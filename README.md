@@ -1,4 +1,4 @@
-# workout-tracker
+# Fitness-tracker
 
 ## User Story
 

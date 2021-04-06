@@ -19,8 +19,5 @@ module.exports = function(app) {
                                         res.json(updatedWorkout);
                                     })
     });
-    //to add a range
-    app.post('/api/workouts/range',(req,res)=>{
-
-    })
+    
 };

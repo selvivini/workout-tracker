@@ -57,4 +57,4 @@ If we want to check the consolidated workouts for last 7 workouts, the user can 
 
 The app is deployed to herokku
 Please check the following link
-[herokku link]()
+[herokku link](https://obscure-depths-69292.herokuapp.com/)

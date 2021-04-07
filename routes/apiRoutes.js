@@ -1,4 +1,5 @@
 const db = require('../models');
+
 module.exports = function(app) {
 	//to get all workouts
 	app.get('/api/workouts', (req, res) => {
@@ -6,18 +7,20 @@ module.exports = function(app) {
 	});
 
 	//to add a new workout
-	app.post('/api/workouts', (req, res) => {
-		db.Workout.create({}).then((data) => res.json(data)).catch((err) => res.json(err));
+	app.post('/api/workouts', ({ body }, res) => {
+		db.Workout.create(body).then((data) => res.json(data)).catch((err) => res.json(err));
 	});
 
-	 //add excerise, set id, push to model, set true
-     app.put("/api/workouts/:workout", ({ params, body }, res) => {
-        db.Workout.findOneAndUpdate({ _id: params.id},
-                                    {$push: {excercises:body }},
-                                    { upsert: true, useFindandModify:false},
-                                    updatedWorkout => {
-                                        res.json(updatedWorkout);
-                                    })
-    });
-    
+	//to update a workout
+	app.put('/api/workouts/:id', ({ params, body }, res) => {
+		db.Workout
+			.findByIdAndUpdate({ _id: params.id }, { $push: { exercises: body } })
+			.then((updatedWorkout) => res.json(updatedWorkout))
+			.catch((err) => res.json(err));
+	});
+
+	//to get the range
+	app.get('/api/workouts/range', (req, res) => {
+		db.Workout.find({}).then((workout) => res.json(workout)).catch((err) => res.json(err));
+	});
 };

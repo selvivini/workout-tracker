@@ -3,7 +3,21 @@ const db = require('../models');
 module.exports = function(app) {
 	//to get all workouts
 	app.get('/api/workouts', (req, res) => {
-		db.Workout.find({}).then((workouts) => res.json(workouts)).catch((err) => res.send(err));
+		db.Workout.aggregate([
+			{
+			  $addFields: {
+				totalDuration: {
+				  $sum: '$exercises.duration',
+				},
+			  },
+			},
+		  ])
+			.then((data) => {
+			  res.json(data);
+			})
+			.catch((err) => {
+			  res.json(err);
+			});
 	});
 
 	//to add a new workout
@@ -21,7 +35,21 @@ module.exports = function(app) {
 
 	//to get the range
 	app.get('/api/workouts/range', (req, res) => {
-		db.Workout.find({}).then((workout) => res.json(workout)).catch((err) => res.json(err));
+		db.Workout.aggregate([
+			{
+			  $addFields: {
+				totalDuration: {
+				  $sum: '$exercises.duration',
+				},
+			  },
+			},
+		  ])
+			.then((data) => {
+			  res.json(data);
+			})
+			.catch((err) => {
+			  res.json(err);
+			});
 	});
 	
 };

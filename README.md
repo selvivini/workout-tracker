@@ -53,7 +53,7 @@ If the workout type is acardio the following inputs are shown for the user to en
 
 If we want to check the consolidated workouts for last 7 workouts, the user can click the dashoard page in the nav bar, it navigates to the stats page with the following charts
 
-![chart](public/images/chart.PNG)
+![chart](public/images/chart2.PNG)
 
 The app is deployed to herokku
 Please check the following link
